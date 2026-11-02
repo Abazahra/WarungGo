@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WarungGo - Pameungpeuk & Garut Selatan</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel Standalone untuk JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function App() {
+            const [role, setRole] = React.useState('landing'); // landing, consumer, warung, courier, admin
+            
+            return (
+                <div className="min-h-screen flex flex-col">
+                    {/* Header Gerbang Depan / Khas Kuliner */}
+                    <header className="bg-slate-900/90 backdrop-blur border-b border-slate-800 sticky top-0 z-50">
+                        <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+                            <div className="flex items-center space-x-2 cursor-pointer" onClick={() => setRole('landing')}>
+                                <div className="bg-emerald-500 text-slate-950 font-bold p-2 rounded-xl text-xl shadow-lg">
+                                    <i className="fa-solid fa-utensils"></i>
+                                </div>
+                                <div>
+                                    <h1 className="text-xl font-black tracking-wider text-white">Warung<span className="text-emerald-400">Go</span></h1>
+                                    <p className="text-xs text-slate-400">Pameungpeuk - Garut Selatan</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center space-x-3">
+                                <button onClick={() => setRole('consumer')} className="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg font-semibold text-sm transition shadow-md">
+                                    <i className="fa-solid fa-bag-shopping mr-2"></i> Belanja
+                                </button>
+                                <button onClick={() => setRole('admin')} className="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-lg font-medium text-sm">
+                                    <i className="fa-solid fa-lock mr-1"></i> Admin
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Konten Utama */}
+                    <main className="flex-grow">
+                        {role === 'landing' && (
+                            <div className="relative overflow-hidden bg-slate-900 py-16 lg:py-24">
+                                <div className="absolute inset-0 z-0 opacity-25 bg-cover bg-center" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600&auto=format&fit=crop')` }}></div>
+                                <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
+                                    <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">
+                                        🚀 Layanan Kuliner & Kurir Lokal 30 KM
+                                    </span>
+                                    <h2 className="text-4xl lg:text-6xl font-extrabold text-white tracking-tight mb-6">
+                                        Nikmati Lezatnya Kuliner Pameungpeuk <br/><span className="text-emerald-400">Langsung di Depan Pintu Anda</span>
+                                    </h2>
+                                    <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8">
+                                        Pusat jajanan, makanan khas, dan kebutuhan harian terlengkap. Hubungkan warung lokal, kurir terpercaya, dan pelanggan dalam satu genggaman.
+                                    </p>
+                                    <div className="flex flex-wrap justify-center gap-4">
+                                        <button onClick={() => setRole('consumer')} className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-8 py-4 rounded-xl shadow-xl transition transform hover:-translate-y-0.5">
+                                            <i className="fa-solid fa-cart-shopping mr-2"></i> Mulai Belanja Sekarang
+                                        </button>
+                                        <button onClick={() => alert("Fitur Pendaftaran Mitra Warung & Kurir aktif di sistem utama!")} className="bg-slate-800 hover:bg-slate-700 text-white font-bold px-8 py-4 rounded-xl border border-slate-700 transition">
+                                            <i className="fa-solid fa-store mr-2"></i> Daftar Mitra Usaha / Kurir
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {role === 'consumer' && (
+                            <div className="max-w-7xl mx-auto p-6">
+                                <div className="flex justify-between items-center mb-6">
+                                    <h3 className="text-2xl font-bold text-white"><i className="fa-solid fa-store text-emerald-400 mr-2"></i> Warung & Kuliner Tersedia</h3>
+                                    <button onClick={() => setRole('landing')} className="text-sm text-emerald-400 hover:underline"><i className="fa-solid fa-arrow-left mr-1"></i> Kembali ke Beranda</button>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
+                                        <div className="h-40 bg-slate-800 rounded-xl mb-4 flex items-center justify-center text-slate-600 font-bold text-lg">Foto Kuliner</div>
+                                        <h4 className="text-lg font-bold text-white">Pempek Puan Pameungpeuk</h4>
+                                        <p className="text-sm text-slate-400 mb-4">Aneka Pempek Asli & Cuko Mantap</p>
+                                        <button onClick={() => alert("Masuk ke menu keranjang pemesanan!")} className="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-2 rounded-xl font-bold">Pilih Menu</button>
+                                    </div>
+                                    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg">
+                                        <div className="h-40 bg-slate-800 rounded-xl mb-4 flex items-center justify-center text-slate-600 font-bold text-lg">Foto Minuman</div>
+                                        <h4 className="text-lg font-bold text-white">Teh Keramas & Es Mambo</h4>
+                                        <p className="text-sm text-slate-400 mb-4">Minuman Segar & Es Legendaris</p>
+                                        <button onClick={() => alert("Masuk ke menu keranjang pemesanan!")} className="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-2 rounded-xl font-bold">Pilih Menu</button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {role === 'admin' && (
+                            <div className="max-w-7xl mx-auto p-6">
+                                <div className="flex justify-between items-center mb-6">
+                                    <h3 className="text-2xl font-bold text-white"><i className="fa-solid fa-shield-halved text-emerald-400 mr-2"></i> Dashboard Admin WarungGo</h3>
+                                    <button onClick={() => setRole('landing')} className="text-sm text-emerald-400 hover:underline">Keluar Admin</button>
+                                </div>
+                                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                                    <p className="text-slate-300">Selamat datang di Panel Kontrol Administrator. Semua sistem verifikasi pembayaran QRIS, Rekening Bank, Buku Besar Keuangan, dan Total Keuntungan aktif di sini.</p>
+                                </div>
+                            </div>
+                        )}
+                    </main>
+
+                    {/* Footer */}
+                    <footer className="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500 mt-auto">
+                        <p>&copy; 2026 WarungGo Pameungpeuk - Garut Selatan. All Rights Reserved.</p>
+                    </footer>
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>
